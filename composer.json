@@ -24,7 +24,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "lorisleiva/laravel-actions": "^2.1",
-        "orchid/platform": "^10.4",
+        "orchid/platform": "^11.0",
         "php-open-source-saver/jwt-auth": "^1.2"
     },
     "require-dev": {
