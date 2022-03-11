@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      - name: Verify linting
+        run: composer sniff
+
       - name: Generate application key
         run: php artisan key:generate
 
@@ -52,8 +55,13 @@ jobs:
       - name: Attempt to generate Swagger documentation
         run: php artisan l5-swagger:generate
 
+      - name: Install Postgres client
+        run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends postgresql-client
+
+      - name: Create testing database
+        run: psql -f database/init.sql postgresql://ani:password@postgres:5432/postgres
+
       - name: Execute tests
         run: composer test
-
-      - name: Verify linting
-        run: composer sniff
